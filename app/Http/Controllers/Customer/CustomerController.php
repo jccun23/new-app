@@ -41,4 +41,19 @@ class CustomerController extends Controller
             return Response::json(['message' => $oException->getMessage()], $oException->getCode());
         }
     }
+
+    /**
+     * Retrieve customer data
+     * @param $iCustomerId
+     * @return JsonResponse
+     */
+    public function showCustomer($iCustomerId): JsonResponse
+    {
+        try {
+            $oResponse = $this->oRepository->getCustomer((int) $iCustomerId);
+            return Response::json($oResponse);
+        } catch (QueryException $oException) {
+            return Response::json([$oException->getMessage()], $oException->getCode());
+        }
+    }
 }
