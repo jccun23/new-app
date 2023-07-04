@@ -3,11 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\CustomersModel;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
 class CustomerRepository
 {
+    private $oModel;
+
+   public function __construct(CustomersModel $oModel)
+   {
+       $this->oModel = $oModel;
+   }
 
     /**
      * Add Customer in t_customer table
@@ -34,10 +42,10 @@ class CustomerRepository
     /**
      * Retrieve customer by id
      * @param $iCustomerId
-     * @return Model|\Illuminate\Database\Query\Builder|object|null
+     * @return \Illuminate\Database\Eloquent\Builder[]|Collection
      */
     public function getCustomer($iCustomerId)
     {
-        return DB::table('t_customers')->where(['customer_id' => $iCustomerId])->first();
+        return $this->oModel::with('address')->where(['customer_id' => $iCustomerId])->get();
     }
 }

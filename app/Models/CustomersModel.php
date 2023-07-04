@@ -20,4 +20,9 @@ class CustomersModel extends Model
         'last_name',
         'active'
     ];
+
+    public function address()
+    {
+        return $this->hasMany(AddressesModel::class, 'customer_id', 'customer_id')->where(['t_addresses.primary' => 1]);
+    }
 }
