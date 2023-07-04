@@ -25,4 +25,11 @@ class CustomersModel extends Model
     {
         return $this->hasMany(AddressesModel::class, 'customer_id', 'customer_id')->where(['t_addresses.primary' => 1]);
     }
+
+    public function capability()
+    {
+        return $this->hasMany(CustomerCapabilitiesLinkModel::class, 'customer_id', 'customer_id')->with('capability');
+    }
+
+
 }

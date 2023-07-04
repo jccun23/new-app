@@ -19,4 +19,11 @@ class CustomerCapabilitiesLinkModel extends Model
         'customer_id',
         'capability_id'
     ];
+
+    public function capability()
+    {
+        return $this->hasMany(CapabilitiesModel::class, 'capability_id', 'capability_id');
+    }
+
+
 }
