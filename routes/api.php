@@ -15,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/customer/store', [CustomerController::class, 'storeCustomer']);
-Route::get('/customer/show/{iCustomerId}', [CustomerController::class, 'showCustomer']);
+Route::middleware(['token'])->group(function () {
+    Route::post('/customer/store', [CustomerController::class, 'storeCustomer']);
+    Route::get('/customer/show/{iCustomerId}', [CustomerController::class, 'showCustomer']);
+});
+
+
