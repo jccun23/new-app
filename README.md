@@ -14,7 +14,6 @@ cp .env.example .env
 npm install
 composer install
 ```
-5. Run `npm run dev`
-6. Run `./vendor/bin/sail up` to run the application.
-7. Visit `http://localhost` to test the app
+4. Run `./vendor/bin/sail up` to run the application.
+5. Visit `http://localhost` to test the app
 
